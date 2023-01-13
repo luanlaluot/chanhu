@@ -1,19 +1,18 @@
-import PropTypes from "prop-types";
 import { PropsWithChildren, useMemo } from "react";
 // @mui
-import { CssBaseline, ThemeOptions, useTheme } from "@mui/material";
+import { CssBaseline, ThemeOptions } from "@mui/material";
 import {
-  ThemeProvider as MUIThemeProvider,
   createTheme,
   StyledEngineProvider,
+  ThemeProvider as MUIThemeProvider,
 } from "@mui/material/styles";
 //
+import customShadows, { TCustomShadow } from "./customShadows";
+import GlobalStyles from "./globalStyles";
+import componentsOverride from "./overrides";
 import palette from "./palette";
 import shadows from "./shadows";
 import typography from "./typography";
-import GlobalStyles from "./globalStyles";
-import customShadows, { TCustomShadow } from "./customShadows";
-import componentsOverride from "./overrides";
 
 // ----------------------------------------------------------------------
 
