@@ -1,4 +1,5 @@
 import { Container, Typography } from "@mui/material";
+import Iconify from "components/iconify/Iconify";
 import React from "react";
 
 const Dashboard = () => {

@@ -1,10 +1,9 @@
 // component
-// import SvgColor from "../../../components/svg-color";
+import Iconify from "components/iconify/Iconify";
 
 // ----------------------------------------------------------------------
 
-// const icon = (name: string) => <SvgColor src={`/assets/icons/navbar/${name}.svg`} sx={{ width: 1, height: 1 }} />;
-const icon = (name: string) => null;
+const icon = (name: string) => <Iconify icon={`tabler:${name}`} />;
 export type TNavItem = {
   title: string;
   path: string;
@@ -16,7 +15,7 @@ const navConfig: TNavItem[] = [
   {
     title: "dashboard",
     path: "/dashboard/app",
-    icon: icon("ic_analytics"),
+    icon: icon("layout-dashboard"),
     subMenu: [
       {
         title: "circle chart",
@@ -27,12 +26,12 @@ const navConfig: TNavItem[] = [
   {
     title: "user",
     path: "/dashboard/user",
-    icon: icon("ic_user"),
+    icon: icon("layout-dashboard"),
   },
   {
     title: "table",
     path: "/dashboard/table",
-    icon: icon("ic_cart"),
+    icon: icon("layout-dashboard"),
   },
 ];
 

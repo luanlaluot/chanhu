@@ -3,10 +3,6 @@ import Dashboard from "pages/Dashboard";
 import Profile from "pages/Profile";
 import Table from "pages/Table";
 import { Navigate, useRoutes } from "react-router-dom";
-// layouts
-// import DashboardLayout from "./layouts/dashboard";
-// import SimpleLayout from "./layouts/simple";
-//
 
 // ----------------------------------------------------------------------
 
@@ -18,8 +14,15 @@ export default function Router() {
       children: [
         { element: <Navigate to="/dashboard/app" />, index: true },
         { path: "app", element: <Dashboard /> },
-        { path: "user", element: <Profile /> },
-        { path: "table", element: <Table /> },
+        {
+          path: "detail",
+          element: <Dashboard />,
+          children: [
+            { element: <Navigate to="/detail/user" replace />, index: true },
+            { path: "user", element: <Profile /> },
+            { path: "table", element: <Table /> },
+          ],
+        },
       ],
     },
     // {
