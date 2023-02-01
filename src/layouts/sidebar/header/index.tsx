@@ -11,6 +11,7 @@ import Searchbar from "./Searchbar";
 import AccountPopover from "./AccountPopover";
 import LanguagePopover from "./LanguagePopover";
 import NotificationsPopover from "./NotificationsPopover";
+import BranchSelection from "./BranchSelection";
 
 // ----------------------------------------------------------------------
 
@@ -30,9 +31,10 @@ const StyledRoot = styled(AppBar)(({ theme }) => ({
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   minHeight: HEADER_MOBILE,
+  padding: theme.spacing(2, 2),
   [theme.breakpoints.up("lg")]: {
     minHeight: HEADER_DESKTOP,
-    padding: theme.spacing(0, 5),
+    padding: theme.spacing(2, 5),
   },
 }));
 
@@ -53,7 +55,7 @@ export default function Header({ onOpenNav }: any) {
           <Iconify icon="eva:menu-2-fill" />
         </IconButton>
 
-        <Searchbar />
+        <BranchSelection />
         <Box sx={{ flexGrow: 1 }} />
 
         <Stack
@@ -65,7 +67,7 @@ export default function Header({ onOpenNav }: any) {
           }}
         >
           <LanguagePopover />
-          <NotificationsPopover />
+          {/* <NotificationsPopover /> */}
           <AccountPopover />
         </Stack>
       </StyledToolbar>

@@ -2,7 +2,14 @@ import PropTypes from "prop-types";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 // @mui
-import { Avatar, Box, Drawer, Link, Typography } from "@mui/material";
+import {
+  Avatar,
+  Box,
+  Drawer,
+  IconButton,
+  Link,
+  Typography,
+} from "@mui/material";
 import { alpha, styled } from "@mui/material/styles";
 // mock
 // import account from "../../../_mock/account";
@@ -18,6 +25,7 @@ import Scrollbar from "components/scrollbar/Scrollbar";
 import Logo from "components/logo/Logo";
 import account from "_mock/account";
 import NavSection from "components/nav-section/NavSection";
+import Iconify from "components/iconify/Iconify";
 
 // ----------------------------------------------------------------------
 
@@ -26,7 +34,7 @@ const NAV_WIDTH = 280;
 const StyledAccount = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
-  padding: theme.spacing(2, 2.5),
+  padding: theme.spacing(2, 2, 2, 2.5),
   borderRadius: Number(theme.shape.borderRadius) * 1.5,
   backgroundColor: alpha(theme.palette.grey[500], 0.12),
 }));
@@ -65,13 +73,18 @@ export default function Nav({ openNav, onCloseNav }: any) {
         <Logo />
       </Box>
 
-      <Box sx={{ mb: 5, mx: 2.5 }}>
+      <Box sx={{ mb: 1, mx: 2.5 }}>
         <Link underline="none">
           <StyledAccount>
             <Avatar src={account.photoURL} alt="photoURL" />
-
-            <Box sx={{ ml: 2 }}>
-              <Typography variant="subtitle2" sx={{ color: "text.primary" }}>
+            <Box
+              sx={{ ml: 2, display: "flex", flex: 1, flexDirection: "column" }}
+            >
+              <Typography
+                fontWeight={"bold"}
+                variant="subtitle2"
+                sx={{ color: "text.primary" }}
+              >
                 {account.displayName}
               </Typography>
 
@@ -79,10 +92,14 @@ export default function Nav({ openNav, onCloseNav }: any) {
                 {account.role}
               </Typography>
             </Box>
+            <IconButton>
+              <Iconify icon="tabler:logout" />
+            </IconButton>
           </StyledAccount>
         </Link>
       </Box>
       <NavSection data={navConfig} />
+      <Box sx={{ flexGrow: 1 }} />
     </Scrollbar>
   );
 
@@ -104,6 +121,9 @@ export default function Nav({ openNav, onCloseNav }: any) {
               bgcolor: "background.default",
               borderRightStyle: "dashed",
             },
+          }}
+          ModalProps={{
+            keepMounted: true,
           }}
         >
           {renderContent}

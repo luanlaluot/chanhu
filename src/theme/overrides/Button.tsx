@@ -28,6 +28,18 @@ export default function Button(theme?: TTheme) {
         containedSecondary: {
           boxShadow: theme?.customShadows.secondary,
         },
+        containedInfo: {
+          boxShadow: theme?.customShadows.info,
+        },
+        containedSuccess: {
+          boxShadow: theme?.customShadows.success,
+        },
+        containedWarning: {
+          boxShadow: theme?.customShadows.warning,
+        },
+        containedError: {
+          boxShadow: theme?.customShadows.error,
+        },
         outlinedInherit: {
           border: `1px solid ${alpha(theme?.palette?.grey![500]!, 0.32)}`,
           "&:hover": {

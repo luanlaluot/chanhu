@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import { memo, PropsWithChildren } from "react";
 // @mui
 import { Box } from "@mui/material";

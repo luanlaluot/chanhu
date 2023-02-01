@@ -1,10 +1,23 @@
-import PropTypes from "prop-types";
-import { NavLink as RouterLink } from "react-router-dom";
+import {
+  matchPath,
+  useLocation,
+  NavLink as RouterLink,
+} from "react-router-dom";
 // @mui
-import { Box, List, ListItemText } from "@mui/material";
+import {
+  Box,
+  Collapse,
+  List,
+  ListSubheader,
+  styled,
+  Typography,
+} from "@mui/material";
 //
-import { StyledNavItem, StyledNavItemIcon } from "./styles";
-import { TNavItem } from "layouts/dashboard/nav/config";
+import { Fragment, useEffect, useState } from "react";
+import { NavItem } from "./NavItem";
+import { StyledNavItem } from "./styles";
+import { NavSubItem } from "./NavSubItem";
+import { TNavItem } from "layouts/sidebar/nav/config";
 
 // ----------------------------------------------------------------------
 
@@ -12,45 +25,101 @@ type TNavSectionProps = {
   data: TNavItem[];
 };
 
+export const ListSubheaderStyle = styled((props: any) => (
+  <ListSubheader disableSticky disableGutters {...props} />
+))(({ theme }: any) => ({
+  ...theme.typography.overline,
+  fontWeight: "bold",
+  paddingTop: theme.spacing(3),
+  paddingLeft: theme.spacing(2),
+  paddingBottom: theme.spacing(1),
+  color: theme.palette.text.primary,
+  transition: theme.transitions.create("opacity", {
+    duration: theme.transitions.duration.shorter,
+  }),
+}));
+
 export default function NavSection(props: TNavSectionProps) {
   const { data, ...other } = props;
   return (
     <Box {...other}>
       <List disablePadding sx={{ p: 1 }}>
-        {data.map((item: any) => (
-          <NavItem key={item.title} item={item} />
+        {data.map((item, i) => (
+          <Fragment key={item.title + i}>
+            <ListSubheaderStyle>{item.title}</ListSubheaderStyle>
+            {item.subMenu?.map((list, i) => (
+              <NavListItem key={item.title + i} list={list} item={item} />
+            ))}
+          </Fragment>
         ))}
       </List>
     </Box>
   );
 }
 
-// ----------------------------------------------------------------------
+export function getActive(path?: string, pathname?: string) {
+  return path ? !!matchPath({ path, end: false }, pathname || "") : false;
+}
+export function NavListItem({ list }: any) {
+  const { pathname } = useLocation();
 
-type TNavItemProps = {
-  item: TNavItem;
-};
-function NavItem(props: TNavItemProps) {
-  const { item } = props;
-  const { title, path, icon, info } = item;
+  const active = getActive(list.path, pathname);
 
-  return (
-    <StyledNavItem
-      component={RouterLink}
-      to={path}
-      sx={{
-        "&.active": {
-          color: "text.primary",
-          bgcolor: "action.selected",
-          fontWeight: "fontWeightBold",
-        },
-      }}
-    >
-      <StyledNavItemIcon>{icon && icon}</StyledNavItemIcon>
+  const [open, setOpen] = useState(active);
 
-      <ListItemText disableTypography primary={title} />
+  const hasChildren = list.children;
 
-      {info && info}
-    </StyledNavItem>
-  );
+  if (hasChildren) {
+    return (
+      <Fragment>
+        <NavItem
+          item={list}
+          open={open}
+          onOpen={() => setOpen(!open)}
+          active={active}
+        />
+        <Collapse in={open} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            {(list.children || []).map((item: any, i: number) => (
+              <NavListSub key={item.title + i} list={item} active={active} />
+            ))}
+          </List>
+        </Collapse>
+      </Fragment>
+    );
+  }
+
+  return <NavItem active={active} item={list} />;
+}
+
+function NavListSub({ list }: any) {
+  const { pathname } = useLocation();
+
+  const active = getActive(list?.path, pathname);
+
+  const [open, setOpen] = useState(active);
+
+  const hasChildren = list?.children;
+
+  if (hasChildren) {
+    return (
+      <Fragment>
+        <NavSubItem
+          item={list}
+          active={active}
+          onOpen={() => setOpen(!open)}
+          open={open}
+        />
+        <Collapse in={open} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            {(list.children || []).map((item: any, i: number) => (
+              <NavListSub key={item.title + i} list={item} active={active} />
+            ))}
+          </List>
+        </Collapse>
+      </Fragment>
+    );
+  }
+
+  return <NavSubItem item={list} active={active} />;
 }

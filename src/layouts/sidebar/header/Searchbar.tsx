@@ -65,7 +65,7 @@ export default function Searchbar() {
               autoFocus
               fullWidth
               disableUnderline
-              placeholder="Search…"
+              placeholder="Input "
               startAdornment={
                 <InputAdornment position="start">
                   <Iconify
@@ -76,6 +76,7 @@ export default function Searchbar() {
               }
               sx={{ mr: 1, fontWeight: "fontWeightBold" }}
             />
+            <Button>Search</Button>
           </StyledSearchbar>
         </Slide>
       </div>

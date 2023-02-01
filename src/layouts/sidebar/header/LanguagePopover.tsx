@@ -17,9 +17,9 @@ import { TPalette } from "theme/palette";
 
 const LANGS = [
   {
-    value: "en",
-    label: "English",
-    icon: "/assets/icons/ic_flag_en.svg",
+    value: "vi",
+    label: "Việt Nam",
+    icon: "/assets/icons/ic_flag_vn.svg",
   },
 ];
 
