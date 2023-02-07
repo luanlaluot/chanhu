@@ -19,7 +19,7 @@ const DASHBOARD_ROUTE: RouteObject[] = [
     element: <SidebarLayout />,
     children: [
       { element: <Navigate to="/general/calendar" replace />, index: true },
-      { path: "calendar", element: <Updating /> },
+      { path: "calendar", element: <Dashboard /> },
       { path: "note", element: <Updating /> },
     ],
   },

@@ -3,6 +3,7 @@ import { Link as RouterLink, useParams } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import { Box, Button, Typography, Container } from "@mui/material";
 import Page from "components/page";
+import HeaderBreadcrumbs from "components/header-breadcrumbs";
 // components
 // assets
 
