@@ -11,7 +11,6 @@ import Searchbar from "./Searchbar";
 import AccountPopover from "./AccountPopover";
 import LanguagePopover from "./LanguagePopover";
 import NotificationsPopover from "./NotificationsPopover";
-import BranchSelection from "./BranchSelection";
 
 // ----------------------------------------------------------------------
 
@@ -55,7 +54,6 @@ export default function Header({ onOpenNav }: any) {
           <Iconify icon="eva:menu-2-fill" />
         </IconButton>
 
-        <BranchSelection />
         <Box sx={{ flexGrow: 1 }} />
 
         <Stack

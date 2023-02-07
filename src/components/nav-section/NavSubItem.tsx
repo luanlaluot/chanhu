@@ -14,7 +14,7 @@ export function NavSubItem({
   active = false,
   onOpen,
 }: any) {
-  const { title, path, info, level, children } = item;
+  const { title, path, info, children } = item;
 
   const renderContent = (
     <>
@@ -27,7 +27,7 @@ export function NavSubItem({
 
   if (children) {
     return (
-      <StyledNavItem subActive={active} onClick={onOpen} level={level}>
+      <StyledNavItem subActive={active} onClick={onOpen}>
         {renderContent}
       </StyledNavItem>
     );
@@ -36,12 +36,7 @@ export function NavSubItem({
   return isExternalLink(path) ? (
     <StyledNavItem href={path}>{renderContent}</StyledNavItem>
   ) : (
-    <StyledNavItem
-      subActive={active}
-      component={RouterLink}
-      to={path}
-      level={level}
-    >
+    <StyledNavItem subActive={active} component={RouterLink} to={path}>
       {renderContent}
     </StyledNavItem>
   );

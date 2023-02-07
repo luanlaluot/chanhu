@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useEffect } from "react";
+import { Fragment, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 // @mui
 import {
@@ -8,6 +8,10 @@ import {
   Drawer,
   IconButton,
   Link,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  ListSubheader,
   Typography,
 } from "@mui/material";
 import { alpha, styled } from "@mui/material/styles";
@@ -24,8 +28,14 @@ import navConfig from "./config";
 import Scrollbar from "components/scrollbar/Scrollbar";
 import Logo from "components/logo/Logo";
 import account from "_mock/account";
-import NavSection from "components/nav-section/NavSection";
+import NavSection, {
+  ListSubheaderStyle,
+  NavListItem,
+} from "components/nav-section/NavSection";
 import Iconify from "components/iconify/Iconify";
+import { NavItem } from "components/nav-section/NavItem";
+import { StyledNavItemIcon } from "components/nav-section/styles";
+import { useTheme } from "@mui/system";
 
 // ----------------------------------------------------------------------
 
@@ -98,7 +108,7 @@ export default function Nav({ openNav, onCloseNav }: any) {
           </StyledAccount>
         </Link>
       </Box>
-      <NavSection data={navConfig} />
+      <NavSection data={navConfig} children={<Board />} />
       <Box sx={{ flexGrow: 1 }} />
     </Scrollbar>
   );
@@ -145,3 +155,53 @@ export default function Nav({ openNav, onCloseNav }: any) {
     </Box>
   );
 }
+
+const Board = () => {
+  const theme = useTheme();
+  return (
+    <>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+          paddingTop: theme.spacing(3),
+          paddingLeft: theme.spacing(2),
+          paddingRight: theme.spacing(2),
+          paddingBottom: theme.spacing(1),
+        }}
+      >
+        <BoardTitle>Board</BoardTitle>
+        <IconButton>
+          <Iconify icon="eva:plus-circle-outline" />
+        </IconButton>
+      </Box>
+      {[
+        {
+          title: "Calendar",
+          path: "/board/1234",
+          icon: <Iconify icon="eva:layout-outline" />,
+        },
+        {
+          title: "Note",
+          path: "/board/abcd",
+          icon: <Iconify icon="eva:layout-outline" />,
+        },
+      ].map((list, i) => (
+        <NavListItem list={list} />
+      ))}
+    </>
+  );
+};
+export const BoardTitle = styled((props: any) => (
+  <ListSubheader disableSticky disableGutters {...props} />
+))(({ theme }: any) => ({
+  ...theme.typography.overline,
+  fontWeight: "bold",
+
+  color: theme.palette.text.primary,
+  transition: theme.transitions.create("opacity", {
+    duration: theme.transitions.duration.shorter,
+  }),
+}));

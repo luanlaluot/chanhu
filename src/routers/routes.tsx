@@ -3,6 +3,7 @@ import Dashboard from "pages/Dashboard";
 import NotFound from "pages/error/NotFound";
 import ServerError from "pages/error/ServerError";
 import Login from "pages/Login";
+import Updating from "pages/Updating";
 import { Navigate, RouteObject, useRoutes } from "react-router-dom";
 
 // ----------------------------------------------------------------------
@@ -14,31 +15,18 @@ const LOGIN_ROUTE: RouteObject = {
 
 const DASHBOARD_ROUTE: RouteObject[] = [
   {
-    path: "/dashboard",
+    path: "/general",
     element: <SidebarLayout />,
     children: [
-      { element: <Navigate to="/dashboard/app" replace />, index: true },
-      { path: "app", element: <Dashboard /> },
-      { path: "chart", element: <Dashboard /> },
+      { element: <Navigate to="/general/calendar" replace />, index: true },
+      { path: "calendar", element: <Updating /> },
+      { path: "note", element: <Updating /> },
     ],
   },
   {
-    path: "/components",
+    path: "/board",
     element: <SidebarLayout />,
-    children: [
-      {
-        path: "table",
-        children: [
-          {
-            element: <Navigate to="/components/table/basic" replace />,
-            index: true,
-          },
-          { path: "basic", element: <Dashboard /> },
-          { path: "custom/tab1", element: <Dashboard /> },
-          { path: "custom/tab2", element: <Dashboard /> },
-        ],
-      },
-    ],
+    children: [{ path: ":id", element: <Updating /> }],
   },
 ];
 
@@ -53,7 +41,7 @@ const MAIN_ROUTE = {
 
 const OTHER_ROUTE = {
   path: "/",
-  element: <Navigate to="/dashboard" replace />,
+  element: <Navigate to="/general" replace />,
 };
 
 export default function Router() {

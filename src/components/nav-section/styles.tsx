@@ -6,10 +6,7 @@ import { ListItemIcon, ListItemButton } from "@mui/material";
 
 export const StyledNavItem = styled((props: any) => (
   <ListItemButton disableGutters {...props} />
-))(({ theme, active, subActive, level = 1 }: any) => {
-  const getNavItemPadding = `calc(${theme.spacing(2)} + ${
-    level === 3 ? `22px` : "0px"
-  })`;
+))(({ theme, active, subActive }: any) => {
   return {
     ...theme.typography.body2,
     height: 48,
@@ -17,7 +14,7 @@ export const StyledNavItem = styled((props: any) => (
     textTransform: "capitalize",
     color: theme.palette.text.secondary,
     borderRadius: theme.shape.borderRadius,
-    paddingLeft: getNavItemPadding,
+    paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(1.5),
     ...(active && {
       color: theme.palette.primary.main,

@@ -13,7 +13,7 @@ import {
   Typography,
 } from "@mui/material";
 //
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, PropsWithChildren, useEffect, useState } from "react";
 import { NavItem } from "./NavItem";
 import { StyledNavItem } from "./styles";
 import { NavSubItem } from "./NavSubItem";
@@ -23,6 +23,7 @@ import { TNavItem } from "layouts/sidebar/nav/config";
 
 type TNavSectionProps = {
   data: TNavItem[];
+  children?: React.ReactNode;
 };
 
 export const ListSubheaderStyle = styled((props: any) => (
@@ -40,18 +41,21 @@ export const ListSubheaderStyle = styled((props: any) => (
 }));
 
 export default function NavSection(props: TNavSectionProps) {
-  const { data, ...other } = props;
+  const { data, children, ...other } = props;
   return (
     <Box {...other}>
       <List disablePadding sx={{ p: 1 }}>
-        {data.map((item, i) => (
-          <Fragment key={item.title + i}>
-            <ListSubheaderStyle>{item.title}</ListSubheaderStyle>
-            {item.subMenu?.map((list, i) => (
-              <NavListItem key={item.title + i} list={list} item={item} />
-            ))}
-          </Fragment>
-        ))}
+        <>
+          {data.map((item, i) => (
+            <Fragment key={"nav-section-item" + i.toString()}>
+              <ListSubheaderStyle>{item.title}</ListSubheaderStyle>
+              {item.subMenu?.map((list, i) => (
+                <NavListItem key={list.title + i} list={list} item={item} />
+              ))}
+            </Fragment>
+          ))}
+          {children}
+        </>
       </List>
     </Box>
   );

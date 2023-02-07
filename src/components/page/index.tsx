@@ -9,7 +9,7 @@ const Page = forwardRef(
   ({ children, title = "", meta, ...other }: any, ref) => (
     <>
       <Helmet>
-        <title>{`${title} | MUI-UI`}</title>
+        <title>{`${title} | Raumahu`}</title>
         {meta}
       </Helmet>
 
