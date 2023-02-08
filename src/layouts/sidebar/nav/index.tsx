@@ -32,7 +32,7 @@ import NavSection, {
   ListSubheaderStyle,
   NavListItem,
 } from "components/nav-section/NavSection";
-import Iconify from "components/iconify/Iconify";
+import Iconify from "components/iconify";
 import { NavItem } from "components/nav-section/NavItem";
 import { StyledNavItemIcon } from "components/nav-section/styles";
 import { useTheme } from "@mui/system";

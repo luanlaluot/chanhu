@@ -2,7 +2,7 @@ import { LoadingButton } from "@mui/lab";
 import { Button, Container, Typography } from "@mui/material";
 import Breadcrumbs from "components/breadcrumbs";
 import HeaderBreadcrumbs from "components/header-breadcrumbs";
-import Iconify from "components/iconify/Iconify";
+import Iconify from "components/iconify";
 import Page from "components/page";
 import { useSnackbar } from "notistack";
 import React, { useEffect, useState } from "react";

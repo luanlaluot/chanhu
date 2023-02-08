@@ -1,5 +1,5 @@
 import { ListItemText } from "@mui/material";
-import Iconify from "components/iconify/Iconify";
+import Iconify from "components/iconify";
 import { NavLink as RouterLink } from "react-router-dom";
 import { StyledNavItem, StyledNavItemIcon } from "./styles";
 

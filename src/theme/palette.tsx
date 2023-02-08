@@ -146,7 +146,7 @@ const palette: TPalette = {
     active: GREY[600],
     hover: alpha(GREY[500], 0.08),
     selected: alpha(GREY[500], 0.16),
-    disabled: alpha(GREY[500], 0.8),
+    disabled: alpha(GREY[200], 0.8),
     disabledBackground: alpha(GREY[500], 0.24),
     focus: alpha(GREY[500], 0.24),
     hoverOpacity: 0.08,

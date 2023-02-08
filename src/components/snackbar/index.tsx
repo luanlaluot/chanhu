@@ -1,7 +1,7 @@
 import { SnackbarProvider as Provider } from "notistack";
 import { useRef } from "react";
 // @mui
-import Iconify from "components/iconify/Iconify";
+import Iconify from "components/iconify";
 
 // ----------------------------------------------------------------------
 
@@ -75,7 +75,7 @@ export default function SnackbarProvider({ children }: any) {
         // With close as default
         action={(key) => <Iconify icon={"eva:close-fill"} />}
       >
-        y{children}
+        {children}
       </Provider>
     </>
   );

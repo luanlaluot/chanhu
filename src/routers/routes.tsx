@@ -1,5 +1,5 @@
 import SidebarLayout from "layouts/sidebar";
-import Dashboard from "pages/Dashboard";
+import Calendar from "pages/Calendar";
 import NotFound from "pages/error/NotFound";
 import ServerError from "pages/error/ServerError";
 import Login from "pages/Login";
@@ -19,7 +19,7 @@ const DASHBOARD_ROUTE: RouteObject[] = [
     element: <SidebarLayout />,
     children: [
       { element: <Navigate to="/general/calendar" replace />, index: true },
-      { path: "calendar", element: <Dashboard /> },
+      { path: "calendar", element: <Calendar /> },
       { path: "note", element: <Updating /> },
     ],
   },

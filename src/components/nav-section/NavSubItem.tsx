@@ -1,7 +1,7 @@
 import { Box, ListItemText } from "@mui/material";
 import { NavLink as RouterLink } from "react-router-dom";
 
-import Iconify from "components/iconify/Iconify";
+import Iconify from "components/iconify";
 import { StyledNavItem, StyledNavItemIcon } from "./styles";
 
 export function isExternalLink(path: string) {

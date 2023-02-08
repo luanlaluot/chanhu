@@ -83,7 +83,7 @@ const typography: TypographyOptions = {
     fontSize: pxToRem(16),
   },
   subtitle2: {
-    fontWeight: 300,
+    fontWeight: 500,
     lineHeight: 22 / 14,
     fontSize: pxToRem(14),
   },

@@ -24,7 +24,7 @@ import {
 import { fToNow } from "../../../utils/formatTime";
 // components
 import Scrollbar from "../../../components/scrollbar/Scrollbar";
-import Iconify from "components/iconify/Iconify";
+import Iconify from "components/iconify";
 
 // ----------------------------------------------------------------------
 
